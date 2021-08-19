@@ -10,7 +10,7 @@ video=createCapture(VIDEO)
 video.hide();
 tint_color="";
 poseNet=ml5.poseNet(video, modelLoaded);
-poseNet.on('pose',gotPoses)
+
 }
 function gotPoses(results){
     if(results.length>0)
@@ -26,7 +26,7 @@ function gotPoses(results){
 function draw(){
 image(video, 0, 0, 400, 400);
 tint(tint_color);
-nose()
+image(clown_nose,noseX, noseY, 30, 30)
 }
 
 function take_snapshot(){
@@ -38,9 +38,11 @@ tint_color=document.getElementById("Color Name").value
 }
 
 function nose(){
+    poseNet.on('pose',gotPoses)
     image(clown_nose,noseX, noseY, 30, 30)
+    clown_nose.nose();
 }
 
 function modelLoaded(){
     console.log("poseNet is loaded!")
-    }
+}
